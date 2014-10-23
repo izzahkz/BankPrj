@@ -24,12 +24,12 @@ public class CheckingAccount extends Account {
     
     //override withdraw method
     //Same as savings account but we can withdraw more money than we have.
-    public boolean withdraw(double amount){
-        boolean result = true;
+    public void withdraw(double amount) throws OverdraftException{
         if(balance < amount){
             double overdraftNeeded = amount - balance;
             if(overdraftAmount < overdraftNeeded){
-               result = false; 
+                throw new OverdraftException("Insufficient funds for overdraft\n" +
+"protection", overdraftNeeded);
             }else{
                 balance = 0.0;
                 overdraftAmount-= overdraftNeeded;
@@ -37,6 +37,6 @@ public class CheckingAccount extends Account {
     }else{
             balance-= amount;
         }
-    return result;
+    
     }
 }

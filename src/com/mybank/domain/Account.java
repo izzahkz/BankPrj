@@ -15,12 +15,12 @@ package com.mybank.domain;
  */
 
 
-public class Account {        
+public  class Account {        
     protected double balance;
     
     /** Creates a new instance of Account
      * @param initBalance */
-    protected Account(double initBalance) {    // Constructor
+    public Account(double initBalance) {    // Constructor
         balance = initBalance;
     }
     
@@ -29,17 +29,16 @@ public class Account {
         return balance;
     }
     
-    public boolean deposit(double amt) {
+    public void deposit(double amt) {
         balance = balance + amt;
-        return true;
     }
     
-    public boolean withdraw(double amt) {
-        boolean result = false;
+    public void withdraw(double amt) throws OverdraftException {
         if (amt <= balance) {
             balance = balance - amt;
-            result = true;
+        }else{
+            throw new OverdraftException("insufficient funds", amt - balance);
         }
-        return result;
+       
     }    
 }

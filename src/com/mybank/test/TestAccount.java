@@ -2,6 +2,7 @@ package com.mybank.test;
 
 
 import com.mybank.domain.Account;
+import com.mybank.domain.OverdraftException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +14,7 @@ import com.mybank.domain.Account;
  * @author Tassos
  */
 public class TestAccount {
-    public static void main(String []args){
+    public static void main(String []args) throws OverdraftException{
     Account acct = new Account(100.0);      //Instanciate Account object from classe's constructor.
     
     acct.deposit(47);                    //Use class method deposit
